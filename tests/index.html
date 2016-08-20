@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <title>Tests</title>
+</head>
+<body>
+
+    <link rel = "stylesheet" href = "../bower_components/toastr/toastr.min.css">
+
+    <script src = "../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src = "../bower_components/angular/angular.js"></script>
+    <script src = "../bower_components/toastr/toastr.min.js"></script>
+    <script>
+        var app = angular.module('app',[]); //This is app specific
+    </script>
+    <script src = "../src/common.js"></script>
+    <script src = "../src/config.js"></script>
+    <script src = "../src/directives.js"></script>
+
+    <script>
+
+
+
+        console.log("Filter value", removeMasksAndLeadingZero("0,00001.1/2-3/4"));
+        console.log("ReplaceAll", replaceAll("0,00001.1/2-3/4",'[,|.|/|-]',''));
+        console.log("Format Currency BR", maskCurrencyBR("0,10"));
+        console.log("Format Currency BR", maskCurrencyBR("0.10"));
+        console.log("Format Currency BR", maskCurrencyBR("11"));
+        console.log("Format Currency BR", maskCurrencyBR("11.00"));
+        console.log("Format Currency BR", maskCurrencyBR("556719"));
+
+
+        $(document).ready(function () {
+            addFormError("test1","warning test");
+            addFormError("test2","warning test div");
+        });
+
+    </script>
+
+    <div ng-app="app">
+        <div>
+            <input type = "text" id = "test1">
+        </div>
+        <div>
+            <input type = "text" id = "test2">
+            <div id="warning-test2"></div>
+        </div>
+        <div>
+            <input type = "text" id = "test3" mask-person-pin="">
+        </div>
+        <div>
+            <input type = "text" id = "test4" focus-me="">
+        </div>
+    </div>
+
+</body>
+</html>
