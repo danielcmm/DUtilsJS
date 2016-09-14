@@ -253,6 +253,24 @@ function maskDateBR(campo) {
 
 }
 
+function maskHours(hours){
+
+	var valor = onlyNumbers(hours);
+
+	if (valor.length >=3){
+
+		var p1 = valor.substring(0,2);
+		var p2 = valor.substring(2,4);
+
+		return p1 + ":" + p2;
+
+	}
+
+	return valor;
+
+
+}
+
 function maskPersonPINBR(pin){
 
 	var valor = onlyNumbers(pin);
@@ -327,6 +345,31 @@ function maskCompanyPINBR(pin){    // Esta eh a function que formata o cnpj.
 		var p2 = valor.substring(2);
 
 		return p1 + "." + p2 ;
+	}
+
+	return valor;
+
+}
+
+function maskPhoneNumberBR(number){
+
+	var valor = onlyNumbers(number);
+
+	if (valor.length >=7){
+
+		var p1 = valor.substring(0,2);
+		var p2 = valor.substring(2,6);
+		var p3 = valor.substring(6,11);
+
+		return "(" + p1 + ")" + p2 + "-" + p3;
+
+	}else if (valor.length >= 3){
+
+		var p1 = valor.substring(0,2);
+		var p2 = valor.substring(2);
+
+
+		return "(" + p1 + ")" + p2 ;
 	}
 
 	return valor;

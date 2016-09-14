@@ -60,44 +60,35 @@ app.directive('maskCompanyPin', function () {
 	}
 });
 
-app.directive('contextHelp', ['$http', '$uibModal', function ($http, $uibModal) {
+app.directive('maskHours', function () {
 	return {
 		restrict: 'A',
-		link: function (scope, element, attrs) {
-			element.bind("click", function (event) {
+		require: 'ngModel',
+		link: function (scope, element, attrs,ctrl) {
+			element.bind("keyup", function (event) {
 
-				if (attrs.contextHelp) {
+				element.val(maskHours(element.val()));
+				ctrl.$setViewValue(element.val());
+				ctrl.$render();
 
-					var title = attrs.contextHelpTitle ? attrs.contextHelpTitle : "Ajuda";
-
-					$http.get("/help/" + attrs.contextHelp).then(function (response) {
-
-						$uibModal.open({
-							templateUrl: "help-modal",
-							backdrop: 'static',
-							resolve: {
-								html: function () {
-									return response.data;
-								}
-							},
-							controller: ['$uibModalInstance', 'html', function ($uibModalInstance, html) {
-
-								$uibModalInstance.rendered.then(function () {
-
-									$("#help-modal-title").html(title);
-									$("#help-modal-body").html(html);
-
-								});
-
-							}]
-						});
-
-
-					});
-
-
-				}
 			});
 		}
 	}
-}]);
+});
+
+
+app.directive('maskPhoneNumber', function () {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function (scope, element, attrs,ctrl) {
+			element.bind("keyup", function (event) {
+
+				element.val(maskPhoneNumberBR(element.val()));
+				ctrl.$setViewValue(element.val());
+				ctrl.$render();
+
+			});
+		}
+	}
+});
