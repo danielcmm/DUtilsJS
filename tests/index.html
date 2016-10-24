@@ -14,9 +14,10 @@
     <script>
         var app = angular.module('app',[]); //This is app specific
     </script>
-    <script src = "../src/common.js"></script>
-    <script src = "../src/config.js"></script>
-    <script src = "../src/directives.js"></script>
+    <script src = "../src/dutils-common.js"></script>
+    <script src = "../src/dutils-angular-config.js"></script>
+    <script src = "../src/dutils-angular-directives.js"></script>
+    <script src = "../tests/TestController.js"></script>
 
     <script>
 
@@ -47,10 +48,28 @@
             <div id="warning-test2"></div>
         </div>
         <div>
-            <input type = "text" id = "test3" mask-person-pin="">
+            <input type = "text" id = "test3" mask-person-pin="" ng-model="personPin" placeholder="Person pin mask">
         </div>
         <div>
-            <input type = "text" id = "test4" focus-me="">
+            <input type = "text" mask-company-pin="" ng-model="companyPin" placeholder="Company pin mask">
+        </div>
+        <div>
+            <input type = "text" id = "test4" focus-me="" placeholder="focus me test">
+        </div>
+        <div>
+            <input type = "text" mask-currency="" ng-model="curency" currency-prefix="" placeholder="Currency mask">
+        </div>
+        <div>
+            <input type = "text" mask-phone-number="" ng-model="phone" placeholder="Phone number mask">
+        </div>
+        <div>
+            <input type = "text" mask-number="" ng-model="number" placeholder="Number mask">
+        </div>
+        <div>
+            <input type = "text" mask-hours="" placeholder="Hours mask" ng-model="hours">
+        </div>
+        <div>
+            <input type = "text" mask-date="" placeholder="Date Mask" ng-model="date">
         </div>
     </div>
 

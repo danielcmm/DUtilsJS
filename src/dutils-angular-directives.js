@@ -24,24 +24,6 @@ app.directive('onEnter', function () {
 	}
 });
 
-app.directive('maskPersonPin', function () {
-	return {
-		restrict: 'A',
-		link: function (scope, element, attrs,ctrl) {
-			element.bind("keyup", function () {
-
-				element.val(maskPersonPINBR(element.val()));
-
-				if (ctrl && ctrl.$setViewValue){
-					ctrl.$setViewValue(element.val());
-					ctrl.$render();
-				}
-
-			});
-		}
-	}
-});
-
 app.directive('maskCompanyPin', function () {
 	return {
 		restrict: 'A',
@@ -52,6 +34,41 @@ app.directive('maskCompanyPin', function () {
 				element.val(maskCompanyPINBR(element.val()));
 
 				// Atualiza o valor do ngModel também
+				ctrl.$setViewValue(element.val());
+				ctrl.$render();
+
+			});
+		}
+	}
+});
+
+app.directive('maskCurrency', function () {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function (scope, element, attrs,ctrl) {
+			element.bind("keyup", function (event) {
+
+				var prefix = attrs.currencyPrefix != undefined ? attrs.currencyPrefix : null;
+				element.val(maskCurrencyBR(element.val(),prefix));
+
+				// Atualiza o valor do ngModel também
+				ctrl.$setViewValue(element.val());
+				ctrl.$render();
+
+			});
+		}
+	}
+});
+
+app.directive('maskDate', function () {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function (scope, element, attrs,ctrl) {
+			element.bind("keyup", function (event) {
+
+				element.val(maskDateBR(element.val()));
 				ctrl.$setViewValue(element.val());
 				ctrl.$render();
 
@@ -76,6 +93,41 @@ app.directive('maskHours', function () {
 	}
 });
 
+app.directive('maskNumber', function () {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function (scope, element, attrs,ctrl) {
+			element.bind("keyup", function (event) {
+
+				element.val(onlyNumbers(element.val()));
+
+				// Atualiza o valor do ngModel também
+				ctrl.$setViewValue(element.val());
+				ctrl.$render();
+
+			});
+		}
+	}
+});
+
+app.directive('maskPersonPin', function () {
+	return {
+		restrict: 'A',
+		link: function (scope, element, attrs,ctrl) {
+			element.bind("keyup", function () {
+
+				element.val(maskPersonPINBR(element.val()));
+
+				if (ctrl && ctrl.$setViewValue){
+					ctrl.$setViewValue(element.val());
+					ctrl.$render();
+				}
+
+			});
+		}
+	}
+});
 
 app.directive('maskPhoneNumber', function () {
 	return {

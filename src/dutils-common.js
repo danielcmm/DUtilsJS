@@ -197,6 +197,10 @@ function maskCurrencyBR(amount, prefix) {
 
 	var finalAmount = "";
 	var vr = removeMasksAndLeadingZero(amount);
+
+	if (!vr)
+		return "";
+
 	var tam = vr.length;
 
 	if (isNaN(vr)) {
@@ -229,33 +233,47 @@ function maskCurrencyBR(amount, prefix) {
 	return finalAmount;
 }
 
-function maskDateBR(campo) {
+function maskDateBR(content) {
 
-	var valor = onlyNumbers(campo.value);
+	var valor = onlyNumbers(content);
+
+	if (!valor)
+		return "";
+
+	var aux = valor;
+
 	if (valor.length >= 5) {
 
 		var p1 = valor.substring(0, 2);
 		var p2 = valor.substring(2, 4);
-		var p3 = valor.substring(4);
+		var p3 = valor.substring(4,8);
 
-		campo.value = p1 + "/" + p2 + "/" + p3;
+		aux = p1 + "/" + p2 + "/" + p3;
 
 	} else if (valor.length >= 3) {
 
 		var p1 = valor.substring(0, 2);
 		var p2 = valor.substring(2);
 
-
-		campo.value = p1 + "/" + p2;
-	} else {
-		campo.value = valor;
+		aux = p1 + "/" + p2;
 	}
+
+	return aux;
+
+}
+
+function maskDateInputBR(field){
+
+	field.value = maskDateBR(field.value);
 
 }
 
 function maskHours(hours){
 
 	var valor = onlyNumbers(hours);
+
+	if (!valor)
+		return "";
 
 	if (valor.length >=3){
 
@@ -267,7 +285,6 @@ function maskHours(hours){
 	}
 
 	return valor;
-
 
 }
 
@@ -312,6 +329,9 @@ function maskCompanyPINBR(pin){    // Esta eh a function que formata o cnpj.
 
 	var valor = onlyNumbers(pin);
 
+	if (!valor)
+		return "";
+
 	if (valor.length >=13){
 
 		var p1 = valor.substring(0,2);
@@ -354,6 +374,8 @@ function maskCompanyPINBR(pin){    // Esta eh a function que formata o cnpj.
 function maskPhoneNumberBR(number){
 
 	var valor = onlyNumbers(number);
+
+	if (!valor) return "";
 
 	if (valor.length >=7){
 
