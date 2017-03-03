@@ -8,7 +8,7 @@ function appAlert(message, title) {
 	);
 }
 
-function appInfo(mensagem,titulo,timeout) {
+function appInfo(mensagem, titulo, timeout) {
 
 	if (!timeout)
 		timeout = 10000;
@@ -22,30 +22,30 @@ function appInfo(mensagem,titulo,timeout) {
 	);
 }
 
-function addFormError(field,message){
+function addFormError(field, message) {
 
 	var msg = "<div class='help-block validation-error text-red'>" + message + "</div>";
 
 	var hasWarningField = document.getElementById("warning-" + field) !== null;
 	var fieldExists = document.getElementById(field) !== null;
 
-	var field = field.replace(/\./g,"\\.");
+	var field = field.replace(/\./g, "\\.");
 
-	if(hasWarningField){
+	if (hasWarningField) {
 		$("#warning-" + field).html(msg).parent().addClass('has-error');
-	}else if(fieldExists){
+	} else if (fieldExists) {
 		$("#" + field).parent().append(msg).addClass('has-error');
-	}else{
+	} else {
 		appAlert(message);
 	}
 }
 
-function removeFormErrors(){
+function removeFormErrors() {
 	$(".validation-error").remove();
 	$(".has-error").removeClass('has-error');
 }
 
-function empty(valor){
+function empty(valor) {
 	return $.trim(valor) === "";
 }
 
@@ -92,20 +92,20 @@ function fixDatepickerDate(data) {
 
 }
 
-function isMobile(){
-	return $(window).width() <= 703 ? true: false;
+function isMobile() {
+	return $(window).width() <= 703 ? true : false;
 }
 
-function loadingCenter(target,show,imageSize){
+function loadingCenter(target, show, imageSize) {
 
 	if (imageSize == undefined || imageSize == null)
 		imageSize = 50;
 
-	loading(target,show,imageSize,'center');
+	loading(target, show, imageSize, 'center');
 
 }
 
-function loadingTop(target,show,imageSize, marginTop){
+function loadingTop(target, show, imageSize, marginTop) {
 
 	if (imageSize == undefined || imageSize == null)
 		imageSize = 50;
@@ -113,11 +113,11 @@ function loadingTop(target,show,imageSize, marginTop){
 	if (marginTop == undefined || marginTop == null)
 		marginTop = '30px';
 
-	loading(target,show,imageSize,marginTop);
+	loading(target, show, imageSize, marginTop);
 
 }
 
-function loading(target,show,imageSize, spinnerTop){
+function loading(target, show, imageSize, spinnerTop) {
 
 	if (imageSize == undefined || imageSize == null)
 		imageSize = 50;
@@ -126,9 +126,9 @@ function loading(target,show,imageSize, spinnerTop){
 		spinnerTop = '30px';
 
 	var largura = $("#" + target).width();
-	var altura  = $("#" + target).height();
+	var altura = $("#" + target).height();
 
-	if (show){
+	if (show) {
 
 		var loadingDiv = document.createElement("DIV");
 		loadingDiv.id = "loading-" + target;
@@ -139,30 +139,30 @@ function loading(target,show,imageSize, spinnerTop){
 		loadingDiv.style.textAlign = "center";
 		loadingDiv.style.zIndex = "999999";
 
-		if (spinnerTop == 'center'){
-			spinnerTop = ((parseInt(altura)/2) - (imageSize /2)) + "px";
+		if (spinnerTop == 'center') {
+			spinnerTop = ((parseInt(altura) / 2) - (imageSize / 2)) + "px";
 		}
 
 		var spinner = document.createElementNS("http://www.w3.org/2000/svg", 'svg'); //Create a path in SVG's namespace
-		spinner.setAttribute("width","50px");
-		spinner.setAttribute("height","50px");
-		spinner.setAttribute("class","spinner-container");
+		spinner.setAttribute("width", "50px");
+		spinner.setAttribute("height", "50px");
+		spinner.setAttribute("class", "spinner-container");
 		$(spinner).css('margin-top', spinnerTop);
 
-		var tamanhoCirculo = (parseInt(imageSize/2));
+		var tamanhoCirculo = (parseInt(imageSize / 2));
 		var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle'); //Create a path in SVG's namespace
 		circle.setAttribute("cx", tamanhoCirculo + "px"); //Set path's data
-		circle.setAttribute("cy",tamanhoCirculo + "px"); //Set path's data
+		circle.setAttribute("cy", tamanhoCirculo + "px"); //Set path's data
 		circle.setAttribute("r", (tamanhoCirculo - 5) + "px"); //Set path's data
-		circle.setAttribute("fill","none");
-		circle.setAttribute("class","path"); //Set path's data
+		circle.setAttribute("fill", "none");
+		circle.setAttribute("class", "path"); //Set path's data
 		spinner.appendChild(circle);
 
 		loadingDiv.appendChild(spinner);
 
 		$(loadingDiv).prependTo($("#" + target));
 
-	}else{
+	} else {
 		$("#loading-" + target).remove();
 	}
 
@@ -191,7 +191,7 @@ function maskCurrencyBR(amount, prefix) {
 	}
 
 	//Se só veio com uma casa decimal
-	if ((amount.indexOf(".") != -1) && amount.indexOf(".") == amount.length-2){
+	if ((amount.indexOf(".") != -1) && amount.indexOf(".") == amount.length - 2) {
 		amount += "0";
 	}
 
@@ -246,7 +246,7 @@ function maskDateBR(content) {
 
 		var p1 = valor.substring(0, 2);
 		var p2 = valor.substring(2, 4);
-		var p3 = valor.substring(4,8);
+		var p3 = valor.substring(4, 8);
 
 		aux = p1 + "/" + p2 + "/" + p3;
 
@@ -262,23 +262,23 @@ function maskDateBR(content) {
 
 }
 
-function maskDateInputBR(field){
+function maskDateInputBR(field) {
 
 	field.value = maskDateBR(field.value);
 
 }
 
-function maskHours(hours){
+function maskHours(hours) {
 
 	var valor = onlyNumbers(hours);
 
 	if (!valor)
 		return "";
 
-	if (valor.length >=3){
+	if (valor.length >= 3) {
 
-		var p1 = valor.substring(0,2);
-		var p2 = valor.substring(2,4);
+		var p1 = valor.substring(0, 2);
+		var p2 = valor.substring(2, 4);
 
 		return p1 + ":" + p2;
 
@@ -288,142 +288,142 @@ function maskHours(hours){
 
 }
 
-function maskPersonPINBR(pin){
+function maskPersonPINBR(pin) {
 
 	var valor = onlyNumbers(pin);
 
 	if (!valor)
 		return "";
 
-	if (valor.length >=10){
+	if (valor.length >= 10) {
 
-		var p1 = valor.substring(0,3);
-		var p2 = valor.substring(3,6);
-		var p3 = valor.substring(6,9);
-		var p4 = valor.substring(9,11);
+		var p1 = valor.substring(0, 3);
+		var p2 = valor.substring(3, 6);
+		var p3 = valor.substring(6, 9);
+		var p4 = valor.substring(9, 11);
 
 		return p1 + "." + p2 + "." + p3 + "-" + p4;
 
-	}else if (valor.length >= 7){
+	} else if (valor.length >= 7) {
 
-		var p1 = valor.substring(0,3);
-		var p2 = valor.substring(3,6);
+		var p1 = valor.substring(0, 3);
+		var p2 = valor.substring(3, 6);
 		var p3 = valor.substring(6);
 
 
 		return p1 + "." + p2 + "." + p3;
-	}else if (valor.length >= 4){
+	} else if (valor.length >= 4) {
 
-		var p1 = valor.substring(0,3);
+		var p1 = valor.substring(0, 3);
 		var p2 = valor.substring(3);
 
 
-		return p1 + "." + p2 ;
+		return p1 + "." + p2;
 	}
 
 	return valor;
 
 }
 
-function maskCompanyPINBR(pin){    // Esta eh a function que formata o cnpj.
+function maskCompanyPINBR(pin) {    // Esta eh a function que formata o cnpj.
 
 	var valor = onlyNumbers(pin);
 
 	if (!valor)
 		return "";
 
-	if (valor.length >=13){
+	if (valor.length >= 13) {
 
-		var p1 = valor.substring(0,2);
-		var p2 = valor.substring(2,5);
-		var p3 = valor.substring(5,8);
-		var p4 = valor.substring(8,12);
-		var p5 = valor.substring(12,14);
+		var p1 = valor.substring(0, 2);
+		var p2 = valor.substring(2, 5);
+		var p3 = valor.substring(5, 8);
+		var p4 = valor.substring(8, 12);
+		var p5 = valor.substring(12, 14);
 
 		return p1 + "." + p2 + "." + p3 + "/" + p4 + "-" + p5;
 
-	}else if (valor.length >=9){
+	} else if (valor.length >= 9) {
 
-		var p1 = valor.substring(0,2);
-		var p2 = valor.substring(2,5);
-		var p3 = valor.substring(5,8);
-		var p4 = valor.substring(8,12);
+		var p1 = valor.substring(0, 2);
+		var p2 = valor.substring(2, 5);
+		var p3 = valor.substring(5, 8);
+		var p4 = valor.substring(8, 12);
 
 		return p1 + "." + p2 + "." + p3 + "/" + p4;
 
-	}else if (valor.length >= 6){
+	} else if (valor.length >= 6) {
 
-		var p1 = valor.substring(0,2);
-		var p2 = valor.substring(2,5);
+		var p1 = valor.substring(0, 2);
+		var p2 = valor.substring(2, 5);
 		var p3 = valor.substring(5);
 
 		return p1 + "." + p2 + "." + p3;
 
-	}else if (valor.length >= 3){
+	} else if (valor.length >= 3) {
 
-		var p1 = valor.substring(0,2);
+		var p1 = valor.substring(0, 2);
 		var p2 = valor.substring(2);
 
-		return p1 + "." + p2 ;
+		return p1 + "." + p2;
 	}
 
 	return valor;
 
 }
 
-function maskPhoneNumberBR(number){
+function maskPhoneNumberBR(number) {
 
 	var valor = onlyNumbers(number);
 
 	if (!valor) return "";
 
-	if (valor.length >=7){
+	if (valor.length >= 7) {
 
-		var p1 = valor.substring(0,2);
-		var p2 = valor.substring(2,6);
-		var p3 = valor.substring(6,11);
+		var p1 = valor.substring(0, 2);
+		var p2 = valor.substring(2, 6);
+		var p3 = valor.substring(6, 11);
 
 		return "(" + p1 + ")" + p2 + "-" + p3;
 
-	}else if (valor.length >= 3){
+	} else if (valor.length >= 3) {
 
-		var p1 = valor.substring(0,2);
+		var p1 = valor.substring(0, 2);
 		var p2 = valor.substring(2);
 
 
-		return "(" + p1 + ")" + p2 ;
+		return "(" + p1 + ")" + p2;
 	}
 
 	return valor;
 
 }
 
-function maskZipCodeBR(campo){
+function maskZipCodeBR(campo) {
 
 	if (isMobile())
 		return;
 
-	$("#" + campo).keyup(function(){
+	$("#" + campo).keyup(function () {
 
 		var valor = onlyNumbers(this.value);
-		if (valor.length >=6){
+		if (valor.length >= 6) {
 
-			var p1 = valor.substring(0,2);
-			var p2 = valor.substring(2,5);
+			var p1 = valor.substring(0, 2);
+			var p2 = valor.substring(2, 5);
 			var p3 = valor.substring(5);
 
-			if (p3.length >3)
-				p3 = p3.substring(0,3);
+			if (p3.length > 3)
+				p3 = p3.substring(0, 3);
 
 			this.value = p1 + "." + p2 + "-" + p3;
 
-		}else if (valor.length >= 3){
+		} else if (valor.length >= 3) {
 
-			var p1 = valor.substring(0,2);
+			var p1 = valor.substring(0, 2);
 			var p2 = valor.substring(2);
 
 			this.value = p1 + "." + p2;
-		}else{
+		} else {
 			this.value = valor;
 		}
 
@@ -431,7 +431,7 @@ function maskZipCodeBR(campo){
 
 }
 
-function arrRemove(arr,object){
+function arrRemove(arr, object) {
 
 	var index = arr.indexOf(object);
 	if (index != -1) {
@@ -449,59 +449,43 @@ function onlyNumbers(valor) {
 
 }
 
-function toggleFormRow(){
-	$(".form-row").toggle();
-	$(".table-row").toggle();
-}
+function validatePersonPINBR(strCPF) {
+	var Soma = 0;
+	var Resto;
 
-function getDefaultLineChartOptions(){
+	strCPF = onlyNumbers(strCPF);
 
-	var options = {
-		tooltips: {
-			enabled: true
-		},
-		title : {
-			display : true
-		},
-		legend : {
-			position : 'bottom'
-		},
-		animation: {
-			onComplete: function() {
+	if (!strCPF || strCPF.length != 11 ||
+		strCPF == "00000000000" ||
+		strCPF == "11111111111" ||
+		strCPF == "22222222222" ||
+		strCPF == "33333333333" ||
+		strCPF == "44444444444" ||
+		strCPF == "55555555555" ||
+		strCPF == "66666666666" ||
+		strCPF == "77777777777" ||
+		strCPF == "88888888888" ||
+		strCPF == "99999999999")
+		return false;
 
-				var ctx = this.chart.ctx;
+	for (var i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+	Resto = (Soma * 10) % 11;
 
-				ctx.textAlign = "center";
-				ctx.textBaseline = "bottom";
+	if ((Resto == 10) || (Resto == 11))  Resto = 0;
+	if (Resto != parseInt(strCPF.substring(9, 10))) return false;
 
-				for (var i=0;i<this.chart.config.data.datasets.length;i++){
+	Soma = 0;
+	for (var i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+	Resto = (Soma * 10) % 11;
 
-					var dataset = this.chart.config.data.datasets[i];
-
-					var _meta = dataset._meta;
-
-					for (var idx in _meta){
-
-						var metaobj = _meta[idx];
-
-						ctx.fillStyle = dataset.strokeColor;
-						metaobj.dataset._points.forEach(function(p) {
-							ctx.fillText(p._chart.config.data.datasets[p._datasetIndex].data[p._index], p._model.x, p._model.y - 10);
-						});
-					}
-
-				}
-			}
-		}
-	};
-
-	return options;
-
+	if ((Resto == 10) || (Resto == 11))  Resto = 0;
+	if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+	return true;
 }
 
 function copyProperties(srcObj, destObj) {
 	for (var key in destObj) {
-		if(destObj.hasOwnProperty(key) && srcObj.hasOwnProperty(key)) {
+		if (destObj.hasOwnProperty(key) && srcObj.hasOwnProperty(key)) {
 			destObj[key] = srcObj[key];
 		}
 	}

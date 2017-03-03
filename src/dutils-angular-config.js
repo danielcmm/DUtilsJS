@@ -67,15 +67,19 @@ app.config(['$httpProvider', function($httpProvider){
 				//Tratamento padrao de exibicao de erros em forms
 				if (response.status == 422 && !response.config.ignore422){
 
+					var uid = response.config.uid;
+
 					var aux=0;
 					for (var field in response.data){
 
+						var fieldId = uid ? field + "-" + uid : field;
+
 						if (aux ==0){
-							$("#" + field.replace(/\./g,"\\.")).focus();
+							$("#" + fieldId.replace(/\./g,"\\.")).focus();
 							aux++;
 						}
 
-						addFormError(field,response.data[field]);
+						addFormError(fieldId,response.data[field]);
 					}
 
 					if (response.data.error){
@@ -90,3 +94,12 @@ app.config(['$httpProvider', function($httpProvider){
 	}]);
 
 }]);
+
+app.service("UIDService", function(){
+
+	var nextId = 1;
+
+	this.generate = function(){
+		return nextId++;
+	}
+});
