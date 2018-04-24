@@ -125,6 +125,10 @@ function loading(target, show, imageSize, spinnerTop) {
 	if (spinnerTop == undefined || spinnerTop == null)
 		spinnerTop = '30px';
 
+	if (!$("#" + target).length){
+		return;
+	}
+
 	var largura = $("#" + target).width();
 	var altura = $("#" + target).height();
 
@@ -134,6 +138,8 @@ function loading(target, show, imageSize, spinnerTop) {
 		loadingDiv.id = "loading-" + target;
 		loadingDiv.style.width = largura + "px";
 		loadingDiv.style.height = altura + "px";
+		loadingDiv.style.left = $("#" + target).offset().left + "px";
+		loadingDiv.style.top = $("#" + target).offset().top + "px";
 		loadingDiv.style.position = "absolute";
 		loadingDiv.style.backgroundColor = "rgba(255,255,255,.7)";
 		loadingDiv.style.textAlign = "center";
@@ -159,8 +165,7 @@ function loading(target, show, imageSize, spinnerTop) {
 		spinner.appendChild(circle);
 
 		loadingDiv.appendChild(spinner);
-
-		$(loadingDiv).prependTo($("#" + target));
+		$(document.body).append(loadingDiv);
 
 	} else {
 		$("#loading-" + target).remove();
