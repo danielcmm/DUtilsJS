@@ -24,25 +24,25 @@ function appInfo(mensagem, titulo, timeout) {
 
 function addFormError(field, message) {
 
-	var msg = "<div class='help-block validation-error text-red'>" + message + "</div>";
+	let msg = "<div class='invalid-feedback' style='display: block'>" + message + "</div>";
 
-	var hasWarningField = document.getElementById("warning-" + field) !== null;
-	var fieldExists = document.getElementById(field) !== null;
+	let hasWarningField = document.getElementById("warning-" + field) !== null;
+	let fieldExists = document.getElementById(field) !== null;
 
-	var field = field.replace(/\./g, "\\.");
+	let fieldFinal = field.replace(/\./g, "\\.");
 
 	if (hasWarningField) {
-		$("#warning-" + field).html(msg).parent().addClass('has-error');
+		$("#warning-" + fieldFinal).html(msg).parent().find(":input").addClass('is-invalid');
 	} else if (fieldExists) {
-		$("#" + field).parent().append(msg).addClass('has-error');
+		$("#" + fieldFinal).addClass('is-invalid').parent().append(msg);
 	} else {
 		appAlert(message);
 	}
 }
 
 function removeFormErrors() {
-	$(".validation-error").remove();
-	$(".has-error").removeClass('has-error');
+	$(".invalid-feedback").remove();
+	$(".is-invalid").removeClass('is-invalid');
 }
 
 function empty(valor) {

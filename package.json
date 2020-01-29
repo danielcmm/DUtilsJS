@@ -1,9 +1,15 @@
 {
   "name": "dutilsjs",
-  "version": "1.0.7",
-  "description": "Javascript utility methods and configurations for angularjs and vanilla JS",
+  "version": "2.0.0",
+  "description": "Javascript utility methods and configurations",
   "main": "index.js",
   "repository": "https://github.com/danielcmm/DUtilsJS.git",
   "author": "Daniel <danielcmm@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@popperjs/core": "^2.0.3",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "toastr": "^2.1.4"
+  }
 }

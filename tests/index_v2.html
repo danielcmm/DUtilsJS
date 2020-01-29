@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests</title>
+</head>
+<body>
+
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../node_modules/toastr/build/toastr.min.css">
+<link rel="stylesheet" href="../src/dutils-common.css">
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/toastr/build/toastr.min.js"></script>
+<script src="../src/dutils-common.js"></script>
+
+<script type="text/javascript">
+
+    function testLoading() {
+
+        loadingCenter("divTeste", true);
+
+    };
+
+    function testAjax() {
+
+        loadingCenter("divTeste", true);
+        removeFormErrors();
+
+        setTimeout(function(){
+
+            loadingCenter("divTeste", false);
+            addFormError("test1", "warning sem div");
+            addFormError("test2", "warning com div");
+            appAlert("teste erro","tete");
+
+        },500);
+
+
+    };
+
+
+    $(document).ready(function () {
+        addFormError("test1", "warning sem div");
+        addFormError("test2", "warning com div");
+    });
+
+</script>
+
+<div id="divTeste" class="container">
+    <form>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="test1">Username</label>
+                <input type="text" class="form-control" id="test1"
+                       placeholder="Username" >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="test1">Teste 2</label>
+                <input type="text" class="form-control" id="test2"
+                       placeholder="Teste 2">
+                <div id="warning-test2"></div>
+            </div>
+        </div>
+        <input type="button" class="btn btn-primary" onclick="testAjax()" value="Teste ajax"></input>
+    </form>
+</div>
+
+</body>
+</html>
