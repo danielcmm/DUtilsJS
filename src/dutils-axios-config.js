@@ -52,6 +52,11 @@ axios.interceptors.response.use(function (response) {
 
 		appAlert(response.data);
 
+	}else if (error.response.status == '419'){
+
+		alert("Você ficou muito tempo sem utilizar a página e sua sessão expirou.");
+		window.location.reload();
+
 	}else if (error.response.status == '500'){
 
 		let mensagemPadrao = "Erro inesperado. Por favor, tente novamente em alguns minutos.";
