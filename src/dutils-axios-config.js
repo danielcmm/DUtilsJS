@@ -25,47 +25,51 @@ axios.interceptors.response.use(function (response) {
 	$(".block-on-load").prop('disabled',false);
 	removeFormErrors();
 
-	if (!error.response){
-		appAlert("O servidor demorou muito para responder. Por favor, tente novamente e entre em contato caso o problema persista.");
-		return Promise.reject(error);
-	}
+	if (!error.config.ignore_errors){
+	
+		if (!error.response){
+			appAlert("O servidor demorou muito para responder. Por favor, tente novamente e entre em contato caso o problema persista.");
+			return Promise.reject(error);
+		}
 
-	if (error.response.status == '901') {
+		if (error.response.status == '901') {
 
-		alert("Usuário não logado ou sessão expirada. Por favor, identifique-se novamente.");
+			alert("Usuário não logado ou sessão expirada. Por favor, identifique-se novamente.");
 
-		let url = '/auth/login';
-		window.location.href = url;
-		return Promise.reject(error);
-	}
+			let url = '/auth/login';
+			window.location.href = url;
+			return Promise.reject(error);
+		}
 
-	if (error.response.status == '403'){
+		if (error.response.status == '403'){
 
-		appAlert('Você não tem permissão para executar esta ação.');
+			appAlert('Você não tem permissão para executar esta ação.');
 
-	}else if (error.response.status == '401'){
+		}else if (error.response.status == '401'){
 
-		appAlert('Sessão expirada');
-		window.location.href = "/auth/login";
+			appAlert('Sessão expirada');
+			window.location.href = "/auth/login";
 
-	}else if (error.response.status == '404'){
+		}else if (error.response.status == '404'){
 
-		appAlert(response.data);
+			appAlert(response.data);
 
-	}else if (error.response.status == '419'){
+		}else if (error.response.status == '419'){
 
-		alert("Você ficou muito tempo sem utilizar a página e sua sessão expirou.");
-		window.location.reload();
+			alert("Você ficou muito tempo sem utilizar a página e sua sessão expirou.");
+			window.location.reload();
 
-	}else if (error.response.status == '500'){
+		}else if (error.response.status == '500'){
 
-		let mensagemPadrao = "Erro inesperado. Por favor, tente novamente em alguns minutos.";
-		appAlert(mensagemPadrao);
+			let mensagemPadrao = "Erro inesperado. Por favor, tente novamente em alguns minutos.";
+			appAlert(mensagemPadrao);
 
-	}else if (error.response.status == -1){
+		}else if (error.response.status == -1){
 
-		appAlert("Erro de comunicação com o servidor. Aguarde um pouco e tente novamente.");
+			appAlert("Erro de comunicação com o servidor. Aguarde um pouco e tente novamente.");
 
+		}
+		
 	}
 
 	//Tratamento padrao de exibicao de erros em forms
