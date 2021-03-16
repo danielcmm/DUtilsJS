@@ -44,6 +44,13 @@
     $(document).ready(function () {
         addFormError("test1", "warning sem div");
         addFormError("test2", "warning com div");
+
+        console.log("Format Currency BR", maskCurrencyBR("0,10"));
+        console.log("Format Currency BR", maskCurrencyBR("0.10"));
+        console.log("Format Currency BR", maskCurrencyBR("-0.10"));
+        console.log("Format Currency BR", maskCurrencyBR("-0,10"));
+        console.log("Format Currency BR", maskCurrencyBR("-0,10",""));
+
     });
 
 </script>

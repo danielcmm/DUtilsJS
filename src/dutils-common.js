@@ -191,6 +191,8 @@ function maskCurrencyBR(amount, prefix) {
 
 	amount = "" + amount;
 
+	const isNegative = amount.charAt(0) == "-";
+
 	if (amount.indexOf(prefix) != -1) {
 		amount = amount.substr(prefix.length);
 	}
@@ -234,6 +236,9 @@ function maskCurrencyBR(amount, prefix) {
 	if (tam >= 15 && tam <= 18) {
 		finalAmount = prefix + vr.substr(0, tam - 14) + "." + vr.substr(tam - 14, 3) + "." + vr.substr(tam - 11, 3) + "." + vr.substr(tam - 8, 3) + "." + vr.substr(tam - 5, 3) + "," + vr.substr(tam - 2, tam);
 	}
+
+	if (isNegative)
+		finalAmount = "-" + finalAmount;
 
 	return finalAmount;
 }
