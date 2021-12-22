@@ -1,4 +1,6 @@
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+if ($('meta[name="csrf-token"]').length >= 1)
+	axios.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
 
 axios.interceptors.request.use(function (config) {
 
